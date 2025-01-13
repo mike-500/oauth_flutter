@@ -303,6 +303,32 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     await fresh.clearToken();
   }
 
+  /// End the current session
+  Future<void> endSession() async {
+    final token = await fresh.token;
+    if (token == null) return;
+
+    final endpoints = await _discover();
+    final endSession = endpoints.endSession;
+    if (endSession == null) {
+      throw Exception('End session endpoint not available');
+    }
+
+    final response = await oauthDio.getUri(
+      endSession.replace(
+        queryParameters: {
+          'id_token_hint': token.idToken,
+        },
+      ),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to end session');
+    }
+
+    await fresh.clearToken();
+  }
+
   /// Perform the entire OAuth2 flow
   Future<T> authenticate({Future<String>? interceptCallback}) async {
     final authorization = await authorize(interceptCallback: interceptCallback);

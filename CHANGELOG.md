@@ -1,3 +1,7 @@
+## 0.0.7
+
+- Adds support for `end_session_endpoint`
+
 ## 0.0.6
 
 - Specifies a generic type on the `Fresh` field

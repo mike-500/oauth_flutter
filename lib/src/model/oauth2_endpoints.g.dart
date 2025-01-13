@@ -11,6 +11,7 @@ OAuth2Endpoints _$OAuth2EndpointsFromJson(Map<String, dynamic> json) =>
       authorization: json['authorization_endpoint'] as String,
       token: json['token_endpoint'] as String,
       revocation: json['revocation_endpoint'] as String?,
+      endSession: json['end_session_endpoint'] as String?,
     );
 
 Map<String, dynamic> _$OAuth2EndpointsToJson(OAuth2Endpoints instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$OAuth2EndpointsToJson(OAuth2Endpoints instance) =>
       'authorization_endpoint': instance.authorization.toString(),
       'token_endpoint': instance.token.toString(),
       'revocation_endpoint': instance.revocation?.toString(),
+      'end_session_endpoint': instance.endSession?.toString(),
     };

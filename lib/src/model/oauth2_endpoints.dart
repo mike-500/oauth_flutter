@@ -17,23 +17,36 @@ class OAuth2Endpoints {
   @JsonKey(name: 'revocation_endpoint')
   final Uri? revocation;
 
+  /// URI to end the current session
+  @JsonKey(name: 'end_session_endpoint')
+  final Uri? endSession;
+
   /// Construct with explicit URLs
   OAuth2Endpoints({
     required String authorization,
     required String token,
     String? revocation,
+    String? endSession,
   })  : authorization = Uri.parse(authorization),
         token = Uri.parse(token),
-        revocation = revocation != null ? Uri.parse(revocation) : null;
+        revocation = revocation != null ? Uri.parse(revocation) : null,
+        endSession = endSession != null ? Uri.parse(endSession) : null;
 
   /// Construct with a base URL
   ///
-  /// Convenient for services that have a consistent base URL
-  OAuth2Endpoints.base(String base)
-      : this(
-          authorization: '$base/authorize',
-          token: '$base/token',
-          revocation: '$base/revoke',
+  /// Convenient for services that have a consistent base URL. Optionally
+  /// override endpoints with non-standard names.
+  OAuth2Endpoints.base(
+    String base, {
+    String authorization = 'authorize',
+    String token = 'token',
+    String revocation = 'revoke',
+    String endSession = 'end_session',
+  }) : this(
+          authorization: '$base/$authorization',
+          token: '$base/$token',
+          revocation: '$base/$revocation',
+          endSession: '$base/$endSession',
         );
 
   /// From json
