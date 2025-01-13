@@ -1,6 +1,7 @@
 ## 0.0.7
 
 - Adds support for `end_session_endpoint`
+- Improves the utility of `OAuth2Endpoints.base`
 
 ## 0.0.6
 
