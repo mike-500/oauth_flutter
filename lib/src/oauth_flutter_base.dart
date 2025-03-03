@@ -109,10 +109,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     if (endpoints != null) {
       _endpoints.complete(endpoints);
     }
-    fresh = Fresh(
-      tokenHeader: (token) => {
-        'authorization': '${token.tokenType} ${token.accessToken}',
-      },
+    fresh = Fresh.oAuth2(
       tokenStorage: SecureTokenStorage(
         key: '$_keyPrefix$key',
         decoder: this.tokenDecoder,
