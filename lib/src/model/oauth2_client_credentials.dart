@@ -4,8 +4,8 @@ class OAuth2ClientCredentials {
   final String id;
 
   /// The client secret
-  final String secret;
+  final String? secret;
 
   /// Constructor
-  const OAuth2ClientCredentials({required this.id, required this.secret});
+  const OAuth2ClientCredentials({required this.id, this.secret});
 }

@@ -162,7 +162,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     final credentials = this.credentials;
     return {
       'Content-Type': 'application/x-www-form-urlencoded',
-      if (credentials != null)
+      if (credentials != null && credentials.secret != null)
         'Authorization':
             'Basic ${base64Encode(utf8.encode('${credentials.id}:${credentials.secret}'))}',
     };
