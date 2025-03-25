@@ -1,3 +1,7 @@
+## 0.0.8
+
+- Makes `OAuth2ClientCredentials.secret` optional (by [@mike-500](https://github.com/mike-500) in [#5](https://github.com/IO-Design-Team/oauth_flutter/pull/5))
+
 ## 0.0.7
 
 - Adds support for `end_session_endpoint`
