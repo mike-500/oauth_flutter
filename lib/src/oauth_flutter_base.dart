@@ -119,7 +119,6 @@ class OAuth2Client<T extends SecureOAuth2Token> {
         onReAuthenticate: onReAuthenticate ?? authenticate,
       ),
     );
-    dio.interceptors.add(fresh);
     dio.interceptors.insert(0, fresh);
   }
 
