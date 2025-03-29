@@ -120,6 +120,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
       ),
     );
     dio.interceptors.add(fresh);
+    dio.interceptors.insert(0, fresh);
   }
 
   T _decodeToken({
