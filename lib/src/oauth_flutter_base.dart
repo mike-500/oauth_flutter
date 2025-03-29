@@ -255,10 +255,12 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     required T token,
   }) async {
     final endpoints = await _discover();
+    final credentials = this.credentials;
     final response = await oauthDio.postUri(
       endpoints.token,
       options: Options(headers: _tokenHeaders),
       data: {
+        if (credentials != null) 'client_id': credentials.id,
         'grant_type': 'refresh_token',
         'refresh_token': token.refreshToken,
         'scope': token.scope,
