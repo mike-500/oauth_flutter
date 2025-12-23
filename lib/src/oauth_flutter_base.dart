@@ -267,9 +267,6 @@ class OAuth2Client<T extends SecureOAuth2Token> {
 
     final newToken =
         _decodeToken(data: response.data, rawNonce: token.rawNonce);
-    if (verification.tokenNonce && newToken.nonce != token.nonce) {
-      throw Exception('Nonce mismatch');
-    }
 
     return newToken;
   }
