@@ -267,7 +267,11 @@ class OAuth2Client<T extends SecureOAuth2Token> {
 
     final newToken =
         _decodeToken(data: response.data, rawNonce: token.rawNonce);
-    if (verification.tokenNonce && newToken.nonce != token.nonce) {
+    // A refreshed token isn't supposed to have a nonce, but if it does it MUST
+    // match the original nonce
+    if (newToken.nonce != null &&
+        verification.tokenNonce &&
+        newToken.nonce != token.nonce) {
       throw Exception('Nonce mismatch');
     }
 
