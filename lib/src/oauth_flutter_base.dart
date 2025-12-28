@@ -82,6 +82,11 @@ class OAuth2Client<T extends SecureOAuth2Token> {
   /// Not all services support all verification options
   final OAuth2Verification verification;
 
+  /// **Only has an effect on iOS and macOS!**
+  /// If this is `true`, an ephemeral web browser session
+  /// will be used where possible (`prefersEphemeralWebBrowserSession`).
+  final bool? preferEphemeral;
+
   /// The token refresher
   late final Fresh<T> fresh;
 
@@ -204,6 +209,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
         debugOrigin: redirectOriginOverride,
         httpsHost: redirectUri.host,
         httpsPath: redirectUri.path,
+        preferEphemeral: preferEphemeral,
       ),
     );
 
