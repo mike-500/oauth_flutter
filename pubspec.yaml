@@ -4,23 +4,23 @@ version: 0.0.9
 homepage: https://github.com/IO-Design-Team/oauth_flutter
 
 environment:
-  sdk: ^3.0.0
+  sdk: ^3.10.4
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  dio: ^5.8.0+1
-  flutter_secure_storage: ^9.2.4
+  dio: ^5.9.0
+  flutter_secure_storage: ^10.0.0
   flutter_web_auth_2: ^4.1.0
-  fresh_dio: ^0.4.3
+  fresh_dio: ^0.4.4
   json_annotation: ^4.9.0
-  uuid: ^4.5.1
+  uuid: ^4.5.2
   jwt_decoder: ^2.0.1
   pkce: ^1.1.0+1
-  crypto: ^3.0.6
+  crypto: ^3.0.7
 
 dev_dependencies:
-  rexios_lints: ^10.1.0
+  rexios_lints: ^11.0.6
   build_runner: ^2.4.15
   json_serializable: ^6.9.4

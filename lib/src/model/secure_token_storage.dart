@@ -7,7 +7,7 @@ import 'package:oauth_flutter/oauth_flutter.dart';
 /// A [TokenStorage] implementation backed by [FlutterSecureStorage]
 class SecureTokenStorage<T extends SecureOAuth2Token> extends TokenStorage<T> {
   static const _storage = FlutterSecureStorage(
-    aOptions: AndroidOptions(encryptedSharedPreferences: true),
+    aOptions: AndroidOptions(),
     iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
   );
 
