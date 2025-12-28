@@ -107,7 +107,8 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     ReAuthenticationCallback<T>? onReAuthenticate,
     this.redirectOriginOverride,
     this.verification = const OAuth2Verification(),
-  })  : assert((endpoints != null) ^ (discoveryUri != null)),
+    this.preferEphemeral,
+  }) : assert((endpoints != null) ^ (discoveryUri != null)),
         tokenDecoder =
             tokenDecoder ?? SecureOAuth2Token.fromJson as OAuth2TokenDecoder<T>,
         oauthDio = oauthDio ?? Dio() {
