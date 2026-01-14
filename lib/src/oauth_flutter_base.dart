@@ -139,7 +139,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
   Future<T> _refreshToken({
     required T? oldToken,
     required ReAuthenticationCallback<T> onReAuthenticate,
-  }) async {
+  }) {
     Future<T> reauthenticate() async {
       final token = await onReAuthenticate();
       if (token == null) throw Exception('Re-authenticate returned no token');

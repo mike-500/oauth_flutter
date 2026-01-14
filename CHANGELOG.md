@@ -1,3 +1,7 @@
+## 0.0.10
+
+- Dependency upgrades
+
 ## 0.0.9
 
 - Only validates a refresh token nonce if it exists
