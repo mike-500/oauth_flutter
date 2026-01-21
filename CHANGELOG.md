@@ -1,3 +1,7 @@
+## 0.0.11
+
+- Actually awaits the refresh method so reauthentication can happen
+
 ## 0.0.10
 
 - Dependency upgrades
