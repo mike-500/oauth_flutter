@@ -139,7 +139,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
   Future<T> _refreshToken({
     required T? oldToken,
     required ReAuthenticationCallback<T> onReAuthenticate,
-  }) {
+  }) async {
     Future<T> reauthenticate() async {
       final token = await onReAuthenticate();
       if (token == null) throw Exception('Re-authenticate returned no token');
@@ -149,7 +149,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     if (oldToken == null) return reauthenticate();
 
     try {
-      return refresh(token: oldToken);
+      return await refresh(token: oldToken);
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
       if (statusCode == null) rethrow;
