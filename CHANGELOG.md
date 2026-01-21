@@ -1,6 +1,10 @@
+## 0.0.11+1
+
+- Adds PR credit
+
 ## 0.0.11
 
-- Actually awaits the refresh method so reauthentication can happen
+- Actually awaits the refresh method so reauthentication can happen (by [@bocsir](https://github.com/bocsir) in [#7](https://github.com/IO-Design-Team/oauth_flutter/pull/7))
 
 ## 0.0.10
 
