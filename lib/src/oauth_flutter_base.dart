@@ -128,7 +128,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
   }) =>
       tokenDecoder({
         ...data,
-        'issuedAt': DateTime.timestamp(),
+        'issuedAt': DateTime.timestamp().toIso8601String(),
         'rawNonce': rawNonce,
       });
 
