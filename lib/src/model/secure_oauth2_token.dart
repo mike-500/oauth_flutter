@@ -1,3 +1,6 @@
+// These overrides are required for json serialization
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/foundation.dart';
 import 'package:fresh_dio/fresh_dio.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -13,23 +16,19 @@ part 'secure_oauth2_token.g.dart';
 /// - [nonce] - The encoded nonce
 /// - [state] - The state
 @JsonSerializable()
-class SecureOAuth2Token implements OAuth2Token {
-  /// The access token
+class SecureOAuth2Token extends OAuth2Token {
   @override
   @JsonKey(name: 'access_token')
   final String accessToken;
 
-  /// The token type
   @override
   @JsonKey(name: 'token_type')
   final String? tokenType;
 
-  /// The expiry time
   @override
   @JsonKey(name: 'expires_in')
   final int? expiresIn;
 
-  /// The refresh token if available
   @override
   @JsonKey(name: 'refresh_token')
   final String? refreshToken;
@@ -37,9 +36,6 @@ class SecureOAuth2Token implements OAuth2Token {
   /// The id token
   @JsonKey(name: 'id_token')
   final String? idToken;
-
-  @override
-  final String? scope;
 
   /// The state
   final String? state;
@@ -56,14 +52,15 @@ class SecureOAuth2Token implements OAuth2Token {
   /// Constructor
   SecureOAuth2Token({
     required this.accessToken,
+    this.refreshToken,
     this.tokenType,
     this.expiresIn,
-    this.refreshToken,
-    this.scope,
+    super.scope,
+    super.issuedAt,
     this.idToken,
     this.state,
     required this.rawNonce,
-  }) {
+  }) : super(accessToken: accessToken) {
     final idToken = this.idToken;
 
     if (idToken == null) {

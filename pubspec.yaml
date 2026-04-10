@@ -13,7 +13,7 @@ dependencies:
   dio: ^5.6.0
   flutter_secure_storage: ^10.0.0
   flutter_web_auth_2: ^5.0.0
-  fresh_dio: ^0.4.3
+  fresh_dio: ^0.6.0
   json_annotation: ^4.9.0
   uuid: ^4.4.2
   jwt_decoder: ^2.0.1

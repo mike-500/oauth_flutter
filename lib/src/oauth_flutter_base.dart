@@ -126,7 +126,11 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     required Map<String, dynamic> data,
     required String rawNonce,
   }) =>
-      tokenDecoder({...data, 'rawNonce': rawNonce});
+      tokenDecoder({
+        ...data,
+        'issuedAt': DateTime.timestamp(),
+        'rawNonce': rawNonce,
+      });
 
   Future<OAuth2Endpoints> _discover() async {
     if (_endpoints.isCompleted) return _endpoints.future;
