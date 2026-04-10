@@ -1,3 +1,8 @@
+## 0.0.12
+
+- Upgrades `fresh_dio` to `0.6.0`
+- Injects the `issuedAt` timestamp into the token decoder
+
 ## 0.0.11+1
 
 - Adds PR credit
