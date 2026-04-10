@@ -23,13 +23,13 @@ SecureOAuth2Token _$SecureOAuth2TokenFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SecureOAuth2TokenToJson(SecureOAuth2Token instance) =>
     <String, dynamic>{
-      'scope': instance.scope,
-      'issuedAt': instance.issuedAt?.toIso8601String(),
       'access_token': instance.accessToken,
       'token_type': instance.tokenType,
       'expires_in': instance.expiresIn,
       'refresh_token': instance.refreshToken,
       'id_token': instance.idToken,
+      'scope': instance.scope,
+      'issuedAt': instance.issuedAt?.toIso8601String(),
       'state': instance.state,
       'rawNonce': instance.rawNonce,
     };
