@@ -14,22 +14,18 @@ part 'secure_oauth2_token.g.dart';
 /// - [state] - The state
 @JsonSerializable()
 class SecureOAuth2Token implements OAuth2Token {
-  /// The access token
   @override
   @JsonKey(name: 'access_token')
   final String accessToken;
 
-  /// The token type
   @override
   @JsonKey(name: 'token_type')
   final String? tokenType;
 
-  /// The expiry time
   @override
   @JsonKey(name: 'expires_in')
   final int? expiresIn;
 
-  /// The refresh token if available
   @override
   @JsonKey(name: 'refresh_token')
   final String? refreshToken;
@@ -44,7 +40,6 @@ class SecureOAuth2Token implements OAuth2Token {
   @override
   final DateTime? issuedAt;
 
-  /// The date the token will expire.
   @override
   DateTime? get expiresAt {
     final expiresIn = this.expiresIn;
