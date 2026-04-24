@@ -1,5 +1,6 @@
 name: oauth_flutter
-description: "A complete OAuth2 solution for Flutter apps. Handles auth, token storage, and token refresh."
+description: "A complete OAuth2 solution for Flutter apps. Handles auth, token
+  storage, and token refresh."
 version: 0.0.12
 homepage: https://github.com/IO-Design-Team/oauth_flutter
 
@@ -10,17 +11,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dio: ^5.6.0
+  dio: ^5.9.2
   flutter_secure_storage: ^10.0.0
-  flutter_web_auth_2: ^5.0.0
+  flutter_web_auth_2: ^5.0.2
   fresh_dio: ^0.6.0
-  json_annotation: ^4.9.0
-  uuid: ^4.4.2
+  json_annotation: ^4.11.0
+  uuid: ^4.5.3
   jwt_decoder: ^2.0.1
   pkce: ^1.1.0+1
-  crypto: ^3.0.5
+  crypto: ^3.0.7
 
 dev_dependencies:
   rexios_lints: ^17.0.2
-  build_runner: ^2.4.12
-  json_serializable: ^6.8.0
+  build_runner: ^2.14.1
+  json_serializable: ^6.13.1
