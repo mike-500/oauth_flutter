@@ -40,13 +40,13 @@ class OAuth2Endpoints {
     String base, {
     String authorization = 'authorize',
     String token = 'token',
-    String revocation = 'revoke',
-    String endSession = 'end_session',
+    String? revocation = 'revoke',
+    String? endSession = 'end_session',
   }) : this(
           authorization: '$base/$authorization',
           token: '$base/$token',
-          revocation: '$base/$revocation',
-          endSession: '$base/$endSession',
+          revocation: revocation != null ? '$base/$revocation' : null,
+          endSession: endSession != null ? '$base/$endSession' : null,
         );
 
   /// From json
