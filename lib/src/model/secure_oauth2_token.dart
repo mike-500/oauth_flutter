@@ -62,7 +62,7 @@ class SecureOAuth2Token implements OAuth2Token {
   late final String? nonce;
 
   /// Constructor
-  SecureOAuth2Token({
+  new({
     required this.accessToken,
     this.refreshToken,
     this.tokenType,
@@ -91,7 +91,7 @@ class SecureOAuth2Token implements OAuth2Token {
   }
 
   /// From json
-  factory SecureOAuth2Token.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$SecureOAuth2TokenFromJson(json);
 
   /// To json

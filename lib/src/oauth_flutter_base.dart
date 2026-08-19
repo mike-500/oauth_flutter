@@ -15,8 +15,8 @@ import 'package:crypto/crypto.dart' as crypto;
 /// Called when the refresh token has expired. An example use-case for not
 /// returning a token is to prompt the user with the option to re-auth as a
 /// Snackbar instead of forcing re-auth immediately.
-typedef ReAuthenticationCallback<T extends SecureOAuth2Token> = Future<T?>
-    Function();
+typedef ReAuthenticationCallback<T extends SecureOAuth2Token> =
+    Future<T?> Function();
 
 /// Decoder for the OAuth2 token
 ///
@@ -93,7 +93,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
   /// Create an OAuth2 client
   ///
   /// One of [endpoints] or [discoveryUri] must be provided
-  OAuth2Client({
+  new({
     required String key,
     required this.dio,
     Dio? oauthDio,
@@ -109,9 +109,9 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     this.verification = const OAuth2Verification(),
     this.preferEphemeral,
   }) : assert((endpoints != null) ^ (discoveryUri != null)),
-        tokenDecoder =
-            tokenDecoder ?? SecureOAuth2Token.fromJson as OAuth2TokenDecoder<T>,
-        oauthDio = oauthDio ?? Dio() {
+       tokenDecoder =
+           tokenDecoder ?? SecureOAuth2Token.fromJson as OAuth2TokenDecoder<T>,
+       oauthDio = oauthDio ?? Dio() {
     if (endpoints != null) {
       _endpoints.complete(endpoints);
     }
@@ -131,15 +131,14 @@ class OAuth2Client<T extends SecureOAuth2Token> {
   T _decodeToken({
     required Map<String, dynamic> data,
     required String rawNonce,
-  }) =>
-      tokenDecoder({
-        ...data,
-        'issuedAt': DateTime.timestamp().toIso8601String(),
-        'rawNonce': rawNonce,
-      });
+  }) => tokenDecoder({
+    ...data,
+    'issuedAt': DateTime.timestamp().toIso8601String(),
+    'rawNonce': rawNonce,
+  });
 
   Future<OAuth2Endpoints> _discover() async {
-    if (_endpoints.isCompleted) return _endpoints.future;
+    if (_endpoints.isCompleted) return await _endpoints.future;
     final response = await oauthDio.getUri(discoveryUri!);
     final endpoints = OAuth2Endpoints.fromJson(response.data);
     _endpoints.complete(endpoints);
@@ -156,14 +155,14 @@ class OAuth2Client<T extends SecureOAuth2Token> {
       return token;
     }
 
-    if (oldToken == null) return reauthenticate();
+    if (oldToken == null) return await reauthenticate();
 
     try {
       return await refresh(token: oldToken);
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
       if (statusCode == null) rethrow;
-      if (statusCode >= 400 && statusCode < 500) return reauthenticate();
+      if (statusCode >= 400 && statusCode < 500) return await reauthenticate();
       rethrow;
     }
   }
@@ -229,9 +228,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
   }
 
   /// Perform the OAuth2 token exchange
-  Future<T> token({
-    required OAuthAuthorization authorization,
-  }) async {
+  Future<T> token({required OAuthAuthorization authorization}) async {
     final endpoints = await _discover();
     final credentials = this.credentials;
     final response = await oauthDio.postUri(
@@ -262,9 +259,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
   }
 
   /// Refresh the OAuth2 token
-  Future<T> refresh({
-    required T token,
-  }) async {
+  Future<T> refresh({required T token}) async {
     final endpoints = await _discover();
     final credentials = this.credentials;
     final response = await oauthDio.postUri(
@@ -278,8 +273,10 @@ class OAuth2Client<T extends SecureOAuth2Token> {
       },
     );
 
-    final newToken =
-        _decodeToken(data: response.data, rawNonce: token.rawNonce);
+    final newToken = _decodeToken(
+      data: response.data,
+      rawNonce: token.rawNonce,
+    );
     // A refreshed token isn't supposed to have a nonce, but if it does it MUST
     // match the original nonce
     if (newToken.nonce != null &&
@@ -330,11 +327,7 @@ class OAuth2Client<T extends SecureOAuth2Token> {
     }
 
     final response = await oauthDio.getUri(
-      endSession.replace(
-        queryParameters: {
-          'id_token_hint': token.idToken,
-        },
-      ),
+      endSession.replace(queryParameters: {'id_token_hint': token.idToken}),
     );
 
     if (response.statusCode != 200) {
