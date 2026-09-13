@@ -7,8 +7,5 @@ class OAuth2Verification {
   final bool tokenNonce;
 
   /// Constructor
-  const OAuth2Verification({
-    this.tokenState = true,
-    this.tokenNonce = true,
-  });
+  const new({this.tokenState = true, this.tokenNonce = true});
 }

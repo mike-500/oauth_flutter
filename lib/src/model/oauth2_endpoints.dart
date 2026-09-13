@@ -22,35 +22,35 @@ class OAuth2Endpoints {
   final Uri? endSession;
 
   /// Construct with explicit URLs
-  OAuth2Endpoints({
+  new({
     required String authorization,
     required String token,
     String? revocation,
     String? endSession,
-  })  : authorization = Uri.parse(authorization),
-        token = Uri.parse(token),
-        revocation = revocation != null ? Uri.parse(revocation) : null,
-        endSession = endSession != null ? Uri.parse(endSession) : null;
+  }) : authorization = Uri.parse(authorization),
+       token = Uri.parse(token),
+       revocation = revocation != null ? Uri.parse(revocation) : null,
+       endSession = endSession != null ? Uri.parse(endSession) : null;
 
   /// Construct with a base URL
   ///
   /// Convenient for services that have a consistent base URL. Optionally
   /// override endpoints with non-standard names.
-  OAuth2Endpoints.base(
+  new base(
     String base, {
     String authorization = 'authorize',
     String token = 'token',
-    String revocation = 'revoke',
-    String endSession = 'end_session',
+    String? revocation = 'revoke',
+    String? endSession = 'end_session',
   }) : this(
-          authorization: '$base/$authorization',
-          token: '$base/$token',
-          revocation: '$base/$revocation',
-          endSession: '$base/$endSession',
-        );
+         authorization: '$base/$authorization',
+         token: '$base/$token',
+         revocation: revocation != null ? '$base/$revocation' : null,
+         endSession: endSession != null ? '$base/$endSession' : null,
+       );
 
   /// From json
-  factory OAuth2Endpoints.fromJson(Map<String, dynamic> json) =>
+  factory fromJson(Map<String, dynamic> json) =>
       _$OAuth2EndpointsFromJson(json);
 
   /// To json

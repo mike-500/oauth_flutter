@@ -18,7 +18,7 @@ class SecureTokenStorage<T extends SecureOAuth2Token> extends TokenStorage<T> {
   final OAuth2TokenDecoder<T> decoder;
 
   /// Constructor
-  SecureTokenStorage({required this.key, required this.decoder});
+  new({required this.key, required this.decoder});
 
   @override
   Future<void> delete() => _storage.delete(key: key);

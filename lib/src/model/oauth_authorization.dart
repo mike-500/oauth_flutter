@@ -13,7 +13,7 @@ class OAuthAuthorization {
   final String rawNonce;
 
   /// Constructor
-  OAuthAuthorization({
+  new({
     required this.code,
     required this.codeVerifier,
     required this.state,
@@ -21,7 +21,7 @@ class OAuthAuthorization {
   });
 
   /// Parse from url
-  factory OAuthAuthorization.fromUrl({
+  factory fromUrl({
     required String url,
     required String codeVerifier,
     required String state,
